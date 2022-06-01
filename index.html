@@ -20,9 +20,9 @@
       </div>
 
       <div class="six">
-        <div class="header-stats">
-          <div>S:<span data-type="slugs">0</span></div>
-          <div>£:<span data-type="pounds">0</span></div>
+        <div id="header-info">
+          <div>S:<span id="slugs"></span></div>
+          <div>£:<span id="pounds"></span></div>
         </div>
       </div>
     </div>
@@ -30,25 +30,42 @@
   </div>
 
 
-  <div class="container" id="main-content">
+  <div class="container">
+
     <div class="row" id="nav-primary">
-
       <div class="three">
-        <button data-tab="home" class="active"><span class="material-icons">language</span></button>
+        <button data-tab="home" class="tab-button active"><span class="material-icons">language</span></button>
       </div>
 
       <div class="three">
-        <button data-tab="upgrades"><span class="material-icons">rocket_launch</span></button>
+        <button data-tab="upgrades" class="tab-button"><span class="material-icons">rocket_launch</span></button>
       </div>
 
       <div class="three">
-        <button data-tab="events"><span class="material-icons">event_available</span></button>
+        <button data-tab="events" class="tab-button"><span class="material-icons">event_available</span></button>
       </div>
 
       <div class="three">
-        <button data-tab="info"><span class="material-icons">trending_up</span></button>
+        <button data-tab="info" class="tab-button"><span class="material-icons">trending_up</span></button>
       </div>
+    </div>
 
+  </div>
+
+
+  <!-- HOME TAB CONTENT -->
+  <div class="container tab" id="home">
+
+    <div class="row">
+      <div class="twelve">
+        <div class="welcome">
+          <button class="exit"><span class="material-icons">clear</span></button>
+          <h2>WELCOME</h2>
+          <p>Welcome to SLUGZ!</p>
+          <p>Make your fortune by catching and selling slugs. Begin your story by clicking the CATCH button below.</p>
+          <p>Good luck!</p>
+        </div>
+      </div>
     </div>
 
     <div class="row">
@@ -56,7 +73,7 @@
         <h2>CATCH</h2>
         <button data-button="catch" class="hot-button">CATCH!</button>
         <div class="catch-info">
-          <p>You catch 1 slug/click</p>
+          <p>1 slug/click.</p>
         </div>
       </div>
 
@@ -76,7 +93,7 @@
         </div>
 
         <div class="catch-info">
-          <p>You earn £1/slug</p>
+          <p>£1/slug.</p>
         </div>
       </div>
 
@@ -88,24 +105,66 @@
         </div>
 
         <div class="earn-info">
-          <p>You earn 0 slugs/cycle</p>
-          <p>You earn £0/cycle</p>
+          <p>0 slugs every 10 seconds.</p>
+          <p>£0 every 10 seconds.</p>
         </div>
       </div>
 
       <div class="twelve">
         <h2>MESSAGES</h2>
         <div class="messages">
-          <p>You caught 1 slug</p>
-          <p>You caught 10000 slugs</p>
-          <p>You earned £3</p>
+          <p>Caught 1 slug</p>
+          <p>Caught 10000 slugs</p>
+          <p>Earned £3</p>
         </div>
       </div>
     </div>
   </div>
 
 
-  <div class="container" id="footer">
+  <!-- UPGRADES TAB CONTENT -->
+  <div class="container tab invisible" id="upgrades">
+
+    <div class="row">
+      <div class="twelve">
+        <div class="welcome">
+          <button class="exit"><span class="material-icons">clear</span></button>
+          <h2>UPGRADES</h2>
+          <p>You can upgrade your slug collection business once you have the necessary funds.</p>
+          <p>Some upgrades can be used once, some can be applied multiple times.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- EVENTS TAB CONTENT -->
+  <div class="container tab invisible" id="events">
+
+    <div class="row">
+      <div class="twelve">
+        <div class="welcome">
+          <button class="exit"><span class="material-icons">clear</span></button>
+          <h2>EVENTS</h2>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- INFO TAB CONTENT -->
+  <div class="container tab invisible" id="info">
+
+    <div class="row">
+      <div class="twelve">
+        <div class="welcome">
+          <button class="exit"><span class="material-icons">clear</span></button>
+          <h2>INFO</h2>
+        </div>
+      </div>
+    </div>
 
   </div>
 

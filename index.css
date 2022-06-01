@@ -67,8 +67,8 @@ ol.l li,
 
 /* --- FORMS --- */
 
-input[type=submit], input[type=button], button{margin:0 0 20px; padding:5px 10px; border:1px solid #333; -webkit-appearance:none; -moz-appearance:none; appearance:none; border-radius:0;}
-input[type=submit]:hover, input[type=button]:hover, button:hover{background:#333; color:#fff;}
+input[type=submit], input[type=button], button{margin:0 0 10px; padding:4px 8px; background-color:#ff0; border:1px solid #ff0; color:#111; font-weight:700; -webkit-appearance:none; -moz-appearance:none; appearance:none; border-radius:0;}
+input[type=submit]:hover, input[type=button]:hover, button:hover{background:#111; color:#ff0;}
 input[type=text], input[type=password], input[type=number]{width:100%; margin:0 0 20px; padding:10px; background:#fff; border:1px solid #333; font-size:1.2em;}
 input[type=checkbox]{vertical-align:middle;}
 select{max-width:90%; height:40px; margin:0 0 20px; padding:5px 10px; border:1px solid #333; font-size:1em; vertical-align:top;}
@@ -95,7 +95,7 @@ select{max-width:90%; height:40px; margin:0 0 20px; padding:5px 10px; border:1px
 /* --- NAVIGATION --- */
 
 #nav-primary{text-align:center;}
-#nav-primary button{width:100%; margin:0 0 20px; padding:6px 0 0; background-color:#111; border:1px solid #ff0; border-top:0; color:#ff0;}
+#nav-primary button{width:100%; margin:0 0 24px; padding:8px 8px 2px; background-color:#111; border:1px solid #ff0; border-top:0; color:#ff0;}
 #nav-primary button:hover{background-color:#ff0; color:#111;}
 #nav-primary button.active{background-color:#ff0; color:#111;}
 
@@ -103,14 +103,12 @@ select{max-width:90%; height:40px; margin:0 0 20px; padding:5px 10px; border:1px
 /* --- CONTENT --- */
 
 #header{height:50px; margin:0; padding:4px 0; background-color:#ff0; color:#111;}
-.header-stats{width:100%; padding:4px 0 0; text-align:right;}
-.header-stats div{display:inline-block; padding:2px 4px; background-color:#111; color:#ff0; line-height:1;}
+#header-info{width:100%; padding:4px 0 0; text-align:right;}
+#header-info div{display:inline-block; padding:2px 4px; background-color:#111; color:#ff0; line-height:1;}
 
-#footer{}
-
-#main-content{}
-.hot-button{width:100%; margin:0 0 10px; background-color:#ff0; border:1px solid #111; color:#111; font-size:24px; font-weight:700;}
-.hot-button:hover{background-color:#111; border:1px solid #ff0; color:#ff0;}
+.welcome{position:relative; width:96%; margin:0 0 20px; padding:2%; border:1px solid #ff0;}
+.welcome button{position:absolute; top:10px; right:10px; height:26px; padding:0;}
+.hot-button{width:100%; font-size:24px;}
 .catch-info{margin:0 0 20px; padding:0;}
 .earn-bar-container{width:100%; height:10px; margin:0 0 12px; border:1px solid #ff0;}
 .earn-bar{display:inline-block; height:10px; background-color:#ff0; vertical-align:top;}
