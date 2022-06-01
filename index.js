@@ -11,6 +11,7 @@ function hasClass(el, cls) {
 var slugs = 0; //current amount of slugs
 var pounds = 0; //current amount of £
 var catch_click_yield = 1; //current amount of slugs caught per click
+var sell_click_yeild = 1; //current £ value of 1 slug
 
 
 //tabs
@@ -27,7 +28,7 @@ function tabs(){
     tb[a].addEventListener('click', function(){
       //hide all tabs
       for(var b=0; b<t.length; b++){
-        if (t[b].classList.contains('invisible')) {} //do nothing - already hidden
+        if(t[b].classList.contains('invisible')) {} //do nothing - already hidden
         else {
           t[b].classList.add('invisible'); //add invisible class
         }
@@ -42,7 +43,7 @@ function tabs(){
       }
 
       //add active class to this button
-      if (this.classList.contains('active')) {}
+      if(this.classList.contains('active')) {}
       else {
         this.classList.add('active');
       }
@@ -94,7 +95,9 @@ function add_message(type, amount){
   //create message
   var p = document.createElement('p');
   var msg = '';
-  if (type == 'catch click') {msg = 'Caught ' + amount + ' slugs'}
+  if(type == 'catch click') {msg = 'Caught ' + amount + ' slugs'}
+  if(type == 'sell click') {msg = 'Sold ' + amount + ' slugs'}
+  if(type == 'sell click fail') {msg = 'Not enough slugs to sell'}
   p.innerHTML = msg;
 
   //prepend message
@@ -102,8 +105,8 @@ function add_message(type, amount){
 
   //clean up messages
   var msgs = m.getElementsByTagName('p');
-  if (msgs.length > 8){ //if there are more than 8 messages
-    msgs[8].remove();
+  if(msgs.length > 8){ //if there are more than 8 messages
+    msgs[8].remove(); //remove last message
   }
 }
 
@@ -120,10 +123,43 @@ function catch_click(){
 
     //update header info and add message
     update_header_info()
-    add_message('catch click', catch_click_yield)
+    add_message('catch click', catch_click_yield);
   })
 }
 catch_click()
+
+
+//sell
+function sell(){
+  //get sell buttons
+  var sb = document.getElementsByClassName('sell-button');
+
+  //set event listeners
+  for(var a=0; a<sb.length; a++){
+    sb[a].addEventListener('click', function(){
+      //get slugs amount
+      var s = slugs;
+
+      //get sell amount
+      var amount = this.dataset.amount;
+
+      //check if there are enough slugs to sell
+      if(s>=amount){
+        //deduct slugs from total and add message
+        slugs = s - amount;
+        add_message('sell click', amount)
+
+        //add money and update header
+        pounds = pounds + (amount * sell_click_yeild);
+        update_header_info()
+      } else {
+        //do not sell, add message
+        add_message('sell click fail', amount)
+      }
+    })
+  }
+}
+sell()
 
 
 })();
