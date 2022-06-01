@@ -1,0 +1,141 @@
+@charset 'utf-8';
+
+/* Eric Meyer's Reset CSS v2.0 + Extras */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video,button{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}button{background:none;cursor:pointer;}
+
+/*
+Global CSS Document
+SLUGZ
+*/
+
+html{background-color:#111; color:#ff0; font-family:'Courier New', sans-serif; -webkit-font-smoothing:antialiased; -webkit-font-variant-ligatures:common-ligatures; -moz-font-variant-ligatures:common-ligatures; -o-font-variant-ligatures:common-ligatures; -ms-font-variant-ligatures:common-ligatures; font-variant-ligatures:common-ligatures;}
+body{background-color:#111; font-size:16px; font-weight:400; line-height:1.4;}
+
+
+/* --- UTILITY --- */
+
+.invisible{position:absolute; left:-999em;} /* Can be seen by screen readers */
+.removed{display:none;}
+.relative{position:relative;}
+.right{text-align:right;}
+
+img, object, video, audio{max-width:100%;}
+img{display:block; width:100%; height:auto;}
+hr{height:1px; border:none; background:#333;}
+i{vertical-align:sub;}
+
+.embed-container{position:relative; height:0; overflow:hidden; padding-bottom:56.25%;/* 16/9 ratio */} /* Responsive container for Flash objects and iframes */
+.embed-container iframe,
+.embed-container object{position:absolute; top:0; left:0; width:100%; height:100%;}
+
+
+/* --- TYPOGRAPHY --- */
+
+::selection{} /* Selected text style */
+
+strong, b{font-weight:700;}
+em, i{font-style:italic;}
+
+a{color:#b40000; text-decoration:none;}
+a:focus,
+a:hover{color:#333;}
+a.button{display:inline-block; margin:0 0 20px; padding:5px 10px; border:1px solid #333; color:#333; -webkit-appearance:none; -moz-appearance:none; appearance:none; border-radius:0;}
+a.button:hover{background:#333; color:#fff;}
+
+h1, h2, h3, h4, h5, h6, .h,
+.wysiwyg h2, .wysiwyg h3, .wysiwyg h4{font-weight:700; margin:0 0 4px; line-height:1;}
+
+.h.vlarge{font-size:320%;}
+h1, .h.large, .wysiwyg h1{font-size:48px;}
+h2, .h.medlarge, .wysiwyg h2{font-size:32px;}
+h3, .h.medium, .wysiwyg h3{font-size:24px;}
+
+p, .p,
+.wysiwyg p, .wysiwyg ul, .wysiwyg ol, .wysiwyg img{margin:0 0 4px; line-height:1;}
+
+.p.large{font-size:200%;}
+.p.medlarge{font-size:150%;}
+.p.medium{font-size:120%;}
+
+.l,
+.wysiwyg ul, .wysiwyg ol{padding-left:1.6em;}
+ul.l li,
+.wysiwyg ul li{list-style:disc outside;}
+ol.l li,
+.wysiwyg ol li{list-style:decimal outside;}
+
+
+/* --- FORMS --- */
+
+input[type=submit], input[type=button], button{margin:0 0 20px; padding:5px 10px; border:1px solid #333; -webkit-appearance:none; -moz-appearance:none; appearance:none; border-radius:0;}
+input[type=submit]:hover, input[type=button]:hover, button:hover{background:#333; color:#fff;}
+input[type=text], input[type=password], input[type=number]{width:100%; margin:0 0 20px; padding:10px; background:#fff; border:1px solid #333; font-size:1.2em;}
+input[type=checkbox]{vertical-align:middle;}
+select{max-width:90%; height:40px; margin:0 0 20px; padding:5px 10px; border:1px solid #333; font-size:1em; vertical-align:top;}
+
+
+/* --- LAYOUT --- */
+
+.container{width:100%; margin:0;}
+.container .row{
+  width:100%;
+  max-width:640px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(12, 1fr);
+  grid-auto-flow:row dense;
+  grid-column-gap:10px;
+  grid-row-gap:10px;
+}
+.row > div{height:auto; margin:0;}
+.row.margin{margin:0 auto 20px;}
+.one{grid-column-end:span 1;} .two{grid-column-end:span 2;} .three{grid-column-end:span 3;} .four{grid-column-end:span 4;} .five{grid-column-end:span 5;} .six{grid-column-end:span 6;} .seven{grid-column-end:span 7;} .eight{grid-column-end:span 8;} .nine{grid-column-end:span 9;} .ten{grid-column-end:span 10;} .eleven{grid-column-end:span 11;} .twelve{grid-column-end:span 12;}
+
+
+/* --- NAVIGATION --- */
+
+#nav-primary{text-align:center;}
+#nav-primary button{width:100%; margin:0 0 20px; padding:6px 0 0; background-color:#111; border:1px solid #ff0; border-top:0; color:#ff0;}
+#nav-primary button:hover{background-color:#ff0; color:#111;}
+#nav-primary button.active{background-color:#ff0; color:#111;}
+
+
+/* --- CONTENT --- */
+
+#header{height:50px; margin:0; padding:4px 0; background-color:#ff0; color:#111;}
+.header-stats{width:100%; padding:4px 0 0; text-align:right;}
+.header-stats div{display:inline-block; padding:2px 4px; background-color:#111; color:#ff0; line-height:1;}
+
+#footer{}
+
+#main-content{}
+.hot-button{width:100%; margin:0 0 10px; background-color:#ff0; border:1px solid #111; color:#111; font-size:24px; font-weight:700;}
+.hot-button:hover{background-color:#111; border:1px solid #ff0; color:#ff0;}
+.catch-info{margin:0 0 20px; padding:0;}
+.earn-bar-container{width:100%; height:10px; margin:0 0 12px; border:1px solid #ff0;}
+.earn-bar{display:inline-block; height:10px; background-color:#ff0; vertical-align:top;}
+.earn-info{margin:0 0 20px; padding:0;}
+.messages{margin:0 0 20px; padding:0;}
+.messages p:first-of-type{display:inline-block;}
+
+/* --- SMALLER SCREENS --- */
+
+@media only screen and (max-width:800px){
+
+/* Layout */
+body{-webkit-text-size-adjust:none;}
+
+/* General */
+body{font-size:1em;}
+
+}
+
+@media only screen and (max-width:600px){
+
+/* Layout
+.one, .two, .three, .four, .five, .six, .seven, .eight, .nine, .ten, .eleven, .twelve{grid-column-end:span 12;} */
+
+/* General */
+body{font-size:1em;}
+
+}
