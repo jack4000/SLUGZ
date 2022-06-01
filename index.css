@@ -113,8 +113,8 @@ select{max-width:90%; height:40px; margin:0 0 20px; padding:5px 10px; border:1px
 .earn-bar-container{width:100%; height:10px; margin:0 0 12px; border:1px solid #ff0;}
 .earn-bar{display:inline-block; height:10px; background-color:#ff0; vertical-align:top;}
 .earn-info{margin:0 0 20px; padding:0;}
-.messages{margin:0 0 20px; padding:0;}
-.messages p:first-of-type{display:inline-block;}
+#messages{margin:0 0 20px; padding:0;}
+#messages p:first-of-type{display:inline-block;}
 
 /* --- SMALLER SCREENS --- */
 

@@ -8,8 +8,9 @@ function hasClass(el, cls) {
 
 
 //globals
-var slugs = 0;
-var pounds = 0;
+var slugs = 0; //current amount of slugs
+var pounds = 0; //current amount of £
+var catch_click_yield = 1; //current amount of slugs caught per click
 
 
 //tabs
@@ -83,6 +84,46 @@ function update_header_info(){
   hi_p.innerHTML = pounds.toString();
 }
 update_header_info()
+
+
+//add a message to messages area
+function add_message(type, amount){
+  //get messages div
+  var m = document.getElementById('messages');
+
+  //create message
+  var p = document.createElement('p');
+  var msg = '';
+  if (type == 'catch click') {msg = 'Caught ' + amount + ' slugs'}
+  p.innerHTML = msg;
+
+  //prepend message
+  m.prepend(p);
+
+  //clean up messages
+  var msgs = m.getElementsByTagName('p');
+  if (msgs.length > 8){ //if there are more than 8 messages
+    msgs[8].remove();
+  }
+}
+
+
+//catch button functionality
+function catch_click(){
+  //get button
+  var cb = document.getElementById('catch');
+
+  //set event listener
+  cb.addEventListener('click', function(){
+    //increase slugs total
+    slugs = slugs + catch_click_yield;
+
+    //update header info and add message
+    update_header_info()
+    add_message('catch click', catch_click_yield)
+  })
+}
+catch_click()
 
 
 })();
