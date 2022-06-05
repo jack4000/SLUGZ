@@ -33,19 +33,21 @@
   <div class="container">
 
     <div class="row" id="nav-primary">
-      <div class="three">
+      <div class="three relative">
         <button data-tab="home" class="tab-button active"><span class="material-icons">language</span></button>
       </div>
 
-      <div class="three">
+      <div class="three relative">
         <button data-tab="upgrades" class="tab-button"><span class="material-icons">rocket_launch</span></button>
+        <icon class="material-icons alert" style="display:none;" id="upgrade_alert">new_releases</icon>
       </div>
 
-      <div class="three">
+      <div class="three relative">
         <button data-tab="events" class="tab-button"><span class="material-icons">event_available</span></button>
+        <icon class="material-icons alert" style="display:none;" id="event_alert">new_releases</icon>
       </div>
 
-      <div class="three">
+      <div class="three relative">
         <button data-tab="info" class="tab-button"><span class="material-icons">trending_up</span></button>
       </div>
     </div>
@@ -131,6 +133,8 @@
         </div>
       </div>
     </div>
+
+    <div class="row" id="upgrades-container"></div>
 
   </div>
 

@@ -8,6 +8,7 @@ function hasClass(el, cls) {
 
 
 //globals
+var level = 1;
 var slugs = 0; //current amount of slugs
 var pounds = 0; //current amount of £
 var catch_click_yield = 1; //current amount of slugs caught per click
@@ -160,6 +161,42 @@ function sell(){
   }
 }
 sell()
+
+
+//create available upgrades and populate data, upgrade management in seperate function
+function create_upgrades(){
+  //get current game level
+  var lvl = level;
+
+  //get upgrades section
+  var container = document.getElementById('upgrades-container');
+
+  //loop through upgrades
+  for(up in upgrades){
+    if(upgrades[up].level <= lvl){
+      //create dom element and internal div
+      var u = document.createElement('div');
+      u.classList.add('six');
+      var uu = document.createElement('div');
+      uu.classList.add('upgrade-item');
+      uu.classList.add('relative');
+
+      //populate data
+      var title = "<h3>" + upgrades[up].title + "</h3>";
+      var desc = "<p>" + upgrades[up].desc + "<br><br></p>";
+      var price = "<p><strong>£" + upgrades[up].price + "</strong></p>";
+      var benefit = "<p><strong>" + upgrades[up].benefit.desc + "</strong></p>";
+
+      //create buy button
+      var buy = "<button>Buy</button>";
+      uu.innerHTML = title + desc + price + benefit + buy;
+
+      u.prepend(uu);
+      container.append(u);
+    }
+  }
+}
+create_upgrades()
 
 
 })();

@@ -48,7 +48,7 @@ h1, h2, h3, h4, h5, h6, .h,
 .h.vlarge{font-size:320%;}
 h1, .h.large, .wysiwyg h1{font-size:48px;}
 h2, .h.medlarge, .wysiwyg h2{font-size:32px;}
-h3, .h.medium, .wysiwyg h3{font-size:24px;}
+h3, .h.medium, .wysiwyg h3{font-size:20px;}
 
 p, .p,
 .wysiwyg p, .wysiwyg ul, .wysiwyg ol, .wysiwyg img{margin:0 0 4px; line-height:1;}
@@ -98,6 +98,8 @@ select{max-width:90%; height:40px; margin:0 0 20px; padding:5px 10px; border:1px
 #nav-primary button{width:100%; margin:0 0 24px; padding:8px 8px 2px; background-color:#111; border:1px solid #ff0; border-top:0; color:#ff0;}
 #nav-primary button:hover{background-color:#ff0; color:#111;}
 #nav-primary button.active{background-color:#ff0; color:#111;}
+#nav-primary icon.alert{position:absolute; top:8px; right:16px; color:#ff0; font-size:24px; animation:flash 2s linear infinite;}
+@keyframes flash{50% {opacity: 20%;}}
 
 
 /* --- CONTENT --- */
@@ -114,7 +116,10 @@ select{max-width:90%; height:40px; margin:0 0 20px; padding:5px 10px; border:1px
 .earn-bar{display:inline-block; height:10px; background-color:#ff0; vertical-align:top;}
 .earn-info{margin:0 0 20px; padding:0;}
 #messages{margin:0 0 20px; padding:0;}
-#messages p:first-of-type{display:inline-block;}
+#messages p:first-of-type{display:inline-block; padding:2px 4px; background-color:#ff0; color:#111;}
+
+.upgrade-item{margin:0; padding:8px; border:1px solid #ff0;}
+.upgrade-item button{position:absolute; bottom:0; right:10px;}
 
 /* --- SMALLER SCREENS --- */
 
