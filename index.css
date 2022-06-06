@@ -119,6 +119,7 @@ select{max-width:90%; height:40px; margin:0 0 20px; padding:5px 10px; border:1px
 #messages p:first-of-type{display:inline-block; padding:2px 4px; background-color:#ff0; color:#111;}
 
 .upgrade-item{margin:0; padding:8px; border:1px solid #ff0;}
+.upgrade-item.completed{background:#ff0; color:#111;}
 .upgrade-item button{position:absolute; bottom:0; right:10px;}
 
 /* --- SMALLER SCREENS --- */

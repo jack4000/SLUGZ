@@ -8,11 +8,12 @@ function hasClass(el, cls) {
 
 
 //globals
-var level = 1;
+var level = 1; //game level
 var slugs = 0; //current amount of slugs
 var pounds = 0; //current amount of £
 var catch_click_yield = 1; //current amount of slugs caught per click
 var sell_click_yeild = 1; //current £ value of 1 slug
+var completed_upgrades = ['hat',]; //array of completed upgrades
 
 
 //tabs
@@ -171,6 +172,12 @@ function create_upgrades(){
   //get upgrades section
   var container = document.getElementById('upgrades-container');
 
+  //'refresh' upgrades by removing and re-adding
+  var ups = container.children;
+  if(ups.length > 0){
+    container.innerHTML = '';
+  }
+
   //loop through upgrades
   for(up in upgrades){
     if(upgrades[up].level <= lvl){
@@ -180,6 +187,7 @@ function create_upgrades(){
       var uu = document.createElement('div');
       uu.classList.add('upgrade-item');
       uu.classList.add('relative');
+      uu.dataset.upgrade = up;
 
       //populate data
       var title = "<h3>" + upgrades[up].title + "</h3>";
@@ -188,15 +196,63 @@ function create_upgrades(){
       var benefit = "<p><strong>" + upgrades[up].benefit.desc + "</strong></p>";
 
       //create buy button
-      var buy = "<button>Buy</button>";
-      uu.innerHTML = title + desc + price + benefit + buy;
+      var buy = "<button data-upgrade=" + up + ">Buy</button>";
 
+      //complete element and add to page
+      uu.innerHTML = title + desc + price + benefit + buy;
       u.prepend(uu);
       container.append(u);
     }
   }
+
+  //process upgrades - make button active/inactive, etc
+  process_upgrades()
 }
 create_upgrades()
+
+
+//process upgrades - make button active/inactive, etc
+//initially called in create_upgrades() above
+function process_upgrades(){
+  //get upgrades container
+  var container = document.getElementById('upgrades-container');
+
+  //get visible upgrades
+  var vu = container.getElementsByClassName('upgrade-item');
+
+  //get completed upgrades
+  var cu = completed_upgrades;
+
+  //loop through visible upgrades
+  for(var a=0; a<vu.length; a++){
+    //get upgrade name
+    var u = vu[a].dataset.upgrade;
+
+    //check if completed
+    if(cu.includes(vu[a].dataset.upgrade)){
+      //remove buy button
+      var button = vu[a].getElementsByTagName('button');
+      button[0].remove()
+
+      //make upgrade 'completed'
+      vu[a].classList.add('completed');
+    } else {
+      //make buy button active
+      var button = vu[a].getElementsByTagName('button');
+      button[0].addEventListener('click', function(){buy_upgrade(u)});
+    }
+  }
+}
+
+
+//buy upgrade
+function buy_upgrade(up){
+  //add upgrade to completed array
+  completed_upgrades.push(up);
+
+  //recreate upgrades
+  create_upgrades()
+}
 
 
 })();
