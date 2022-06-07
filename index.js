@@ -92,7 +92,7 @@ update_header_info()
 //add a message to messages area
 function add_message(type, amount){
   //get messages div
-  var m = document.getElementById('messages');
+  var m = document.getElementById('message');
 
   //create message
   var p = document.createElement('p');
@@ -100,6 +100,7 @@ function add_message(type, amount){
   if(type == 'catch click') {msg = 'Caught ' + amount + ' slugs'}
   if(type == 'sell click') {msg = 'Sold ' + amount + ' slugs'}
   if(type == 'sell click fail') {msg = 'Not enough slugs to sell'}
+  if(type == 'upgrade buy fail') {msg = 'Not enough money to buy upgrade'}
   p.innerHTML = msg;
 
   //prepend message
@@ -107,8 +108,8 @@ function add_message(type, amount){
 
   //clean up messages
   var msgs = m.getElementsByTagName('p');
-  if(msgs.length > 8){ //if there are more than 8 messages
-    msgs[8].remove(); //remove last message
+  if(msgs.length > 1){ //if there are more than 8 messages
+    msgs[1].remove(); //remove last message
   }
 }
 
@@ -246,12 +247,25 @@ function process_upgrades(){
 
 
 //buy upgrade
-function buy_upgrade(up){
-  //add upgrade to completed array
-  completed_upgrades.push(up);
+function buy_upgrade(u){
+  //get upgrades details
+  var ud = upgrades[u];
 
-  //recreate upgrades
-  create_upgrades()
+  //check if enough money
+  if(pounds>=ud.price){
+    //add upgrade to completed array
+    completed_upgrades.push(u);
+
+    //recreate upgrades
+    create_upgrades()
+
+    //get and apply upgrade stats
+    console.log('a')
+  } else {
+    //send 'not enough money' message
+    add_message('upgrade buy fail', 0)
+  }
+
 }
 
 
