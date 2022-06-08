@@ -10,10 +10,12 @@ function hasClass(el, cls) {
 //globals
 var level = 1; //game level
 var slugs = 0; //current amount of slugs
-var pounds = 0; //current amount of £
-var catch_click_yield = 1; //current amount of slugs caught per click
-var sell_click_yeild = 1; //current £ value of 1 slug
-var completed_upgrades = ['hat',]; //array of completed upgrades
+var pounds = 600; //current amount of £
+var click_catch = 1; //amount of slugs caught per click
+var click_sell = 0.1; //£ value of 1 slug
+var earn_catch = 0; //amount of slugs earned every 10 seconds
+var earn_sell = 0; //amount of slugs earned every 10 seconds
+var completed_upgrades = []; //array of completed upgrades
 
 
 //tabs
@@ -76,17 +78,25 @@ function remove_welcome_message(){
 remove_welcome_message()
 
 
-//update header info - takes the slugs/pounds globals
-function update_header_info(){
-  //get elements
-  var hi_s = document.getElementById('slugs');
-  var hi_p = document.getElementById('pounds');
+//update page info - globals, stats, etc
+function update_page_info(){
+  //get header elements
+  var s = document.getElementById('slugs');
+  var p = document.getElementById('pounds');
 
-  //update values
-  hi_s.innerHTML = slugs.toString();
-  hi_p.innerHTML = pounds.toString();
+  //update header values
+  s.innerHTML = slugs;
+  p.innerHTML = pounds.toFixed(2);
+
+  //get click elements
+  var cc = document.getElementById('click-catch');
+  var cs = document.getElementById('click-sell');
+
+  //update click values
+  cc.innerHTML = click_catch;
+  cs.innerHTML = click_sell;
 }
-update_header_info()
+update_page_info()
 
 
 //add a message to messages area
@@ -97,10 +107,11 @@ function add_message(type, amount){
   //create message
   var p = document.createElement('p');
   var msg = '';
-  if(type == 'catch click') {msg = 'Caught ' + amount + ' slugs'}
-  if(type == 'sell click') {msg = 'Sold ' + amount + ' slugs'}
-  if(type == 'sell click fail') {msg = 'Not enough slugs to sell'}
-  if(type == 'upgrade buy fail') {msg = 'Not enough money to buy upgrade'}
+  if(type == 'catch click'){msg = 'Caught ' + amount + ' slugs'}
+  if(type == 'sell click'){msg = 'Sold ' + amount + ' slugs'}
+  if(type == 'sell click fail'){msg = 'Not enough slugs to sell'}
+  if(type == 'upgrade buy'){msg = 'Bought upgrade!'}
+  if(type == 'upgrade buy fail'){msg = 'Not enough money to buy upgrade'}
   p.innerHTML = msg;
 
   //prepend message
@@ -122,11 +133,11 @@ function catch_click(){
   //set event listener
   cb.addEventListener('click', function(){
     //increase slugs total
-    slugs = slugs + catch_click_yield;
+    slugs = slugs + click_catch;
 
-    //update header info and add message
-    update_header_info()
-    add_message('catch click', catch_click_yield);
+    //update page info and add message
+    update_page_info()
+    add_message('catch click', click_catch);
   })
 }
 catch_click()
@@ -152,9 +163,9 @@ function sell(){
         slugs = s - amount;
         add_message('sell click', amount)
 
-        //add money and update header
-        pounds = pounds + (amount * sell_click_yeild);
-        update_header_info()
+        //add money and update page
+        pounds = pounds + (amount * click_sell);
+        update_page_info()
       } else {
         //do not sell, add message
         add_message('sell click fail', amount)
@@ -240,7 +251,7 @@ function process_upgrades(){
     } else {
       //make buy button active
       var button = vu[a].getElementsByTagName('button');
-      button[0].addEventListener('click', function(){buy_upgrade(u)});
+      button[0].addEventListener('click', function(){buy_upgrade(this.dataset.upgrade)});
     }
   }
 }
@@ -253,6 +264,9 @@ function buy_upgrade(u){
 
   //check if enough money
   if(pounds>=ud.price){
+    //deduct pounds
+    pounds = pounds - ud.price;
+
     //add upgrade to completed array
     completed_upgrades.push(u);
 
@@ -260,7 +274,16 @@ function buy_upgrade(u){
     create_upgrades()
 
     //get and apply upgrade stats
-    console.log('a')
+    if(ud.benefit.type == 'catch click'){click_catch = click_catch+ud.benefit.amount};
+
+    //send message
+    add_message('upgrade buy', 0)
+
+    //unlock next upgrades?
+
+
+    //update page info
+    update_page_info()
   } else {
     //send 'not enough money' message
     add_message('upgrade buy fail', 0)
