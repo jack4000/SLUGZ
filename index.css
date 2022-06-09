@@ -79,9 +79,10 @@ select{max-width:90%; height:40px; margin:0 0 20px; padding:5px 10px; border:1px
 
 .container{width:100%; margin:0;}
 .container .row{
-  width:100%;
+  width:98%;
   max-width:640px;
   margin:0 auto;
+  padding:0 1%;
   display:grid;
   grid-template-columns:repeat(12, 1fr);
   grid-auto-flow:row dense;
@@ -110,7 +111,7 @@ select{max-width:90%; height:40px; margin:0 0 20px; padding:5px 10px; border:1px
 #header-info div{display:inline-block; padding:2px 4px; background-color:#111; color:#ff0; line-height:1;}
 
 #message{display:inline-block; margin:0 0 16px; padding:0;}
-#message p{padding:2px 4px; background:#ff0; color:#111; animation:flash 2s linear 1;}
+#message p{padding:2px 4px; background:#ff0; color:#111; animation:flash 0.5s linear 1;}
 @keyframes flash{50% {opacity: 50%;}}
 
 .welcome{position:relative; width:96%; margin:0 0 20px; padding:2%; border:1px solid #ff0;}
@@ -118,10 +119,11 @@ select{max-width:90%; height:40px; margin:0 0 20px; padding:5px 10px; border:1px
 .hot-button{width:100%; font-size:24px;}
 .catch-info{margin:0 0 20px; padding:0;}
 .earn-bar-container{width:100%; height:10px; margin:0 0 12px; border:1px solid #ff0;}
-.earn-bar{display:inline-block; height:10px; background-color:#ff0; vertical-align:top;}
+#earn-bar{display:inline-block; height:10px; background-color:#ff0; vertical-align:top;}
 .earn-info{margin:0 0 20px; padding:0;}
 
 .upgrade-item{margin:0; padding:8px; border:1px solid #ff0;}
+.upgrade-item .desc{height:50px;}
 .upgrade-item.completed{background:#ff0; color:#111;}
 .upgrade-item button{position:absolute; bottom:0; right:10px;}
 

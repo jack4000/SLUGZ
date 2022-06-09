@@ -55,7 +55,7 @@
     <div class="row">
       <div class="twelve">
         <h2 class="as-text">LAST ACTION:</h2>
-        <div id="message"><p>&nbsp;</p></div>
+        <div id="message"><p>Hello!</p></div>
       </div>
     </div>
 
@@ -65,7 +65,7 @@
   <!-- HOME TAB CONTENT -->
   <div class="container tab" id="home">
 
-    <div class="row">
+    <!--<div class="row">
       <div class="twelve">
         <div class="welcome">
           <button class="exit"><span class="material-icons">clear</span></button>
@@ -75,14 +75,14 @@
           <p>Good luck!</p>
         </div>
       </div>
-    </div>
+    </div>-->
 
     <div class="row">
       <div class="six">
         <h2>CATCH</h2>
         <button class="hot-button" id="catch">CATCH!</button>
         <div class="catch-info">
-          <p><span id="click-catch">1</span> slugs/click</p>
+          <p><span id="click-catch">1</span> slugs / click</p>
         </div>
       </div>
 
@@ -102,7 +102,7 @@
         </div>
 
         <div class="catch-info">
-          <p>£<span id="click-sell">1</span>/slug</p>
+          <p>£<span id="click-sell">1</span> / slug</p>
         </div>
       </div>
 
@@ -110,12 +110,12 @@
         <h2>EARN</h2>
 
         <div class="earn-bar-container">
-          <div class="earn-bar" style="width:22%;"></div>
+          <div id="earn-bar" style="width:0%;"></div>
         </div>
 
         <div class="earn-info">
-          <p>0 slugs every 10 seconds.</p>
-          <p>£0 every 10 seconds.</p>
+          <p><span id="earn-catch">0</span> slugs / 10s</p>
+          <p>£<span id="earn-sell">0</span> / 10s</p>
         </div>
       </div>
     </div>
@@ -125,7 +125,7 @@
   <!-- UPGRADES TAB CONTENT -->
   <div class="container tab invisible" id="upgrades">
 
-    <div class="row">
+    <!--<div class="row">
       <div class="twelve">
         <div class="welcome">
           <button class="exit"><span class="material-icons">clear</span></button>
@@ -133,6 +133,12 @@
           <p>You can upgrade your slug collection business once you have the necessary funds.</p>
           <p>Some upgrades can be used once, some can be applied multiple times.</p>
         </div>
+      </div>
+    </div>-->
+
+    <div class="row">
+      <div class="twelve">
+        <h2>UPGRADES</h2>
       </div>
     </div>
 
@@ -144,12 +150,24 @@
   <!-- EVENTS TAB CONTENT -->
   <div class="container tab invisible" id="events">
 
-    <div class="row">
+    <!--<div class="row">
       <div class="twelve">
         <div class="welcome">
           <button class="exit"><span class="material-icons">clear</span></button>
           <h2>EVENTS</h2>
         </div>
+      </div>
+    </div>-->
+
+    <div class="row">
+      <div class="twelve">
+        <h2>EVENTS</h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="twelve">
+        <h2>HISTORY</h2>
       </div>
     </div>
 
@@ -159,12 +177,18 @@
   <!-- INFO TAB CONTENT -->
   <div class="container tab invisible" id="info">
 
-    <div class="row">
+    <!--<div class="row">
       <div class="twelve">
         <div class="welcome">
           <button class="exit"><span class="material-icons">clear</span></button>
           <h2>INFO</h2>
         </div>
+      </div>
+    </div>-->
+
+    <div class="row">
+      <div class="twelve">
+        <h2>INFO</h2>
       </div>
     </div>
 
@@ -172,6 +196,36 @@
 
 
 <script type="text/javascript" src="upgrades.js"></script>
+<script type="text/javascript" src="events.js"></script>
 <script type="text/javascript" src="index.js"></script>
+
+
+<!--
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyBiRJfyNmDWiUE_4-DdkSeRxF62jQxFnAI",
+    authDomain: "slugz-bc733.firebaseapp.com",
+    projectId: "slugz-bc733",
+    storageBucket: "slugz-bc733.appspot.com",
+    messagingSenderId: "819355633317",
+    appId: "1:819355633317:web:42caf0ddcb3ec6665bef4c",
+    measurementId: "G-5P9J7E44WC"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+-->
+
+
 </body>
 </html>

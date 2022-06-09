@@ -58,7 +58,7 @@ tabs()
 
 
 //welcome messages remover
-function remove_welcome_message(){
+/*function remove_welcome_message(){
   //get elements
   var wm = document.getElementsByClassName('welcome');
 
@@ -75,7 +75,7 @@ function remove_welcome_message(){
     })
   }
 }
-remove_welcome_message()
+remove_welcome_message()*/
 
 
 //update page info - globals, stats, etc
@@ -95,21 +95,30 @@ function update_page_info(){
   //update click values
   cc.innerHTML = click_catch;
   cs.innerHTML = click_sell;
+
+  //get earn elements
+  var ec = document.getElementById('earn-catch');
+  var es = document.getElementById('earn-sell');
+
+  //update earn values
+  ec.innerHTML = earn_catch;
+  es.innerHTML = earn_sell;
 }
 update_page_info()
 
 
 //add a message to messages area
-function add_message(type, amount){
+function add_message(type, amount1, amount2){
   //get messages div
   var m = document.getElementById('message');
 
   //create message
   var p = document.createElement('p');
   var msg = '';
-  if(type == 'catch click'){msg = 'Caught ' + amount + ' slugs'}
-  if(type == 'sell click'){msg = 'Sold ' + amount + ' slugs'}
-  if(type == 'sell click fail'){msg = 'Not enough slugs to sell'}
+  if(type == 'click catch'){msg = '+' + amount1 + ' slugs!'}
+  if(type == 'click sell'){msg = 'Sold ' + amount1 + ' slugs'}
+  if(type == 'click sell fail'){msg = 'Not enough slugs to sell'}
+  if(type == 'earn'){msg = 'Earnings: ' + amount1 + ' slugs caught, £' + amount2 + ' earned'}
   if(type == 'upgrade buy'){msg = 'Bought upgrade!'}
   if(type == 'upgrade buy fail'){msg = 'Not enough money to buy upgrade'}
   p.innerHTML = msg;
@@ -137,7 +146,7 @@ function catch_click(){
 
     //update page info and add message
     update_page_info()
-    add_message('catch click', click_catch);
+    add_message('click catch', click_catch);
   })
 }
 catch_click()
@@ -161,19 +170,52 @@ function sell(){
       if(s>=amount){
         //deduct slugs from total and add message
         slugs = s - amount;
-        add_message('sell click', amount)
+        add_message('click sell', amount)
 
         //add money and update page
         pounds = pounds + (amount * click_sell);
         update_page_info()
       } else {
         //do not sell, add message
-        add_message('sell click fail', amount)
+        add_message('click sell fail', amount)
       }
     })
   }
 }
 sell()
+
+
+//begin earn gameloop timer
+var count = 0; //game 'time' count
+var loop = setInterval(counter, 1000); //calls counter() every 1s
+var eb = document.getElementById('earn-bar'); //get earn-bar
+function counter(){ //adds to the count and does stuff
+  //update counter
+  count += 1;
+
+  //check if end of cycle
+  if(count>10){
+    //reset count
+    count = 0;
+
+    //apply earnings
+    earn()
+  }
+
+  //adjust earn-bar styling
+  eb.style.width = 10*count + '%';
+}
+
+
+//earn
+function earn(){
+  //get earn globals
+  var ec = earn_catch;
+  var es = earn_sell;
+
+  //send earned message
+  add_message('earn', ec, es);
+}
 
 
 //create available upgrades and populate data, upgrade management in seperate function
@@ -192,7 +234,11 @@ function create_upgrades(){
 
   //loop through upgrades
   for(up in upgrades){
-    if(upgrades[up].level <= lvl){
+    //get upgrade data
+    var _up = upgrades[up];
+
+    //check level
+    if(_up.level <= lvl){
       //create dom element and internal div
       var u = document.createElement('div');
       u.classList.add('six');
@@ -202,18 +248,20 @@ function create_upgrades(){
       uu.dataset.upgrade = up;
 
       //populate data
-      var title = "<h3>" + upgrades[up].title + "</h3>";
-      var desc = "<p>" + upgrades[up].desc + "<br><br></p>";
-      var price = "<p><strong>£" + upgrades[up].price + "</strong></p>";
-      var benefit = "<p><strong>" + upgrades[up].benefit.desc + "</strong></p>";
+      var title = "<h3>" + _up.title + "</h3>";
+      var desc = "<p class='desc'>" + _up.desc + "<br><br></p>";
+      var price = "<p><strong>£" + _up.price + "</strong></p>";
+      var benefit = "<p><strong>" + _up.benefit.desc + "</strong></p>";
 
       //create buy button
       var buy = "<button data-upgrade=" + up + ">Buy</button>";
 
-      //complete element and add to page
+      //complete element
       uu.innerHTML = title + desc + price + benefit + buy;
       u.prepend(uu);
-      container.append(u);
+
+      //add to page - prepend will add them in reverse order
+      container.prepend(u);
     }
   }
 
@@ -270,20 +318,24 @@ function buy_upgrade(u){
     //add upgrade to completed array
     completed_upgrades.push(u);
 
-    //recreate upgrades
-    create_upgrades()
-
     //get and apply upgrade stats
-    if(ud.benefit.type == 'catch click'){click_catch = click_catch+ud.benefit.amount};
+    if(ud.benefit.type == 'click catch'){click_catch = click_catch+ud.benefit.amount};
 
     //send message
     add_message('upgrade buy', 0)
 
     //unlock next upgrades?
+    if(ud.unlock>0){
+      //increase game level
+      level = level + 1;
+    }
 
+    //recreate upgrades
+    create_upgrades()
 
     //update page info
     update_page_info()
+
   } else {
     //send 'not enough money' message
     add_message('upgrade buy fail', 0)
