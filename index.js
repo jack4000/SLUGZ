@@ -330,6 +330,12 @@ function buy_upgrade(u){
       level = level + 1;
     }
 
+    //prompt event?
+    if(ud.event != 0){
+      //prompt new event
+      new_event(ud.event)
+    }
+
     //recreate upgrades
     create_upgrades()
 
@@ -340,7 +346,42 @@ function buy_upgrade(u){
     //send 'not enough money' message
     add_message('upgrade buy fail', 0)
   }
+}
 
+
+//new event - called from buy_upgrade() if upgrade prompts event
+function new_event(e){
+  //display event alert in events tab - turned off when event is settled
+  var event_alert = document.getElementById('event-alert');
+  event_alert.style.display = 'inline';
+
+  //get event data
+  var _e = events[e];
+
+  //get events section
+  var container = document.getElementById('events-container');
+
+  //create dom element and internal div
+  var u = document.createElement('div');
+  u.classList.add('twelve');
+  var uu = document.createElement('div');
+  uu.classList.add('event-item');
+  uu.classList.add('relative');
+  uu.dataset.event = e;
+
+  //populate data
+  var title = "<h3>" + _e.title + "</h3>";
+  var desc = "<p class='desc'>" + _e.desc + "<br><br></p>";
+
+  //create choice buttons
+  //var buy = "<button data-upgrade=" + up + ">Buy</button>";
+
+  //complete element
+  uu.innerHTML = title + desc;
+  u.prepend(uu);
+
+  //add to page - prepend will add them in reverse order
+  container.prepend(u);
 }
 
 
