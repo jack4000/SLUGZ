@@ -369,15 +369,73 @@ function new_event(e){
   uu.classList.add('relative');
   uu.dataset.event = e;
 
-  //populate data
+  //populate general data
   var title = "<h3>" + _e.title + "</h3>";
   var desc = "<p class='desc'>" + _e.desc + "<br><br></p>";
 
+  //create choices element
+  var uuu = document.createElement('div');
+  uuu.classList.add('row');
+
+  //create pros and cons lists
+  var onep = document.createElement('ul');
+  for(var a=0; a<_e.choices.one.pros.length; a++){
+    var pro = document.createElement('li');
+    pro.append(_e.choices.one.pros[a]);
+    onep.append(pro);
+  }
+
+  var onec = document.createElement('ul');
+  for(var a=0; a<_e.choices.one.cons.length; a++){
+    var con = document.createElement('li');
+    con.append(_e.choices.one.cons[a]);
+    onec.append(con);
+  }
+
+  var twop = document.createElement('ul');
+  for(var a=0; a<_e.choices.two.pros.length; a++){
+    var pro = document.createElement('li');
+    pro.append(_e.choices.two.pros[a]);
+    twop.append(pro);
+  }
+
+  var twoc = document.createElement('ul');
+  for(var a=0; a<_e.choices.two.cons.length; a++){
+    var con = document.createElement('li');
+    con.append(_e.choices.two.cons[a]);
+    twoc.append(con);
+  }
+
   //create choice buttons
-  //var buy = "<button data-upgrade=" + up + ">Buy</button>";
+  var one_button = document.createElement('button');
+  one_button.dataset.choice = "one";
+  one_button.innerHTML = "Go!";
+  var two_button = document.createElement('button');
+  two_button.dataset.choice = "two";
+  two_button.innerHTML = "Go!";
+
+  //create choices
+  var one = document.createElement('div');
+  one.classList.add('six');
+  one.innerHTML = "<h4>" + _e.choices.one.title + "</h4><p>" + _e.choices.one.desc + "</p>";
+  one.append(onep);
+  one.append(onec);
+  one.append(one_button);
+
+  var two = document.createElement('div');
+  two.classList.add('six');
+  two.innerHTML = "<h4>" + _e.choices.two.title + "</h4><p>" + _e.choices.two.desc + "</p>";
+  two.append(twop);
+  two.append(twoc);
+  two.append(two_button);
+
+  //add choices to choices container
+  uuu.append(one);
+  uuu.append(two);
 
   //complete element
   uu.innerHTML = title + desc;
+  uu.append(uuu); //add choices below general data
   u.prepend(uu);
 
   //add to page - prepend will add them in reverse order
