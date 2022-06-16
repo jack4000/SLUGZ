@@ -16,6 +16,7 @@ var click_sell = 0.1; //£ value of 1 slug
 var earn_catch = 0; //amount of slugs earned every 10 seconds
 var earn_sell = 0; //amount of slugs earned every 10 seconds
 var completed_upgrades = []; //array of completed upgrades
+var completed_events = {}; //completed events
 
 
 //tabs
@@ -379,6 +380,7 @@ function new_event(e){
 
   //create pros and cons lists
   var onep = document.createElement('ul');
+  onep.classList.add('pros');
   for(var a=0; a<_e.choices.one.pros.length; a++){
     var pro = document.createElement('li');
     pro.append(_e.choices.one.pros[a]);
@@ -386,6 +388,7 @@ function new_event(e){
   }
 
   var onec = document.createElement('ul');
+  onec.classList.add('cons');
   for(var a=0; a<_e.choices.one.cons.length; a++){
     var con = document.createElement('li');
     con.append(_e.choices.one.cons[a]);
@@ -393,6 +396,7 @@ function new_event(e){
   }
 
   var twop = document.createElement('ul');
+  twop.classList.add('pros');
   for(var a=0; a<_e.choices.two.pros.length; a++){
     var pro = document.createElement('li');
     pro.append(_e.choices.two.pros[a]);
@@ -400,6 +404,7 @@ function new_event(e){
   }
 
   var twoc = document.createElement('ul');
+  twoc.classList.add('cons');
   for(var a=0; a<_e.choices.two.cons.length; a++){
     var con = document.createElement('li');
     con.append(_e.choices.two.cons[a]);
@@ -409,10 +414,10 @@ function new_event(e){
   //create choice buttons
   var one_button = document.createElement('button');
   one_button.dataset.choice = "one";
-  one_button.innerHTML = "Go!";
+  one_button.innerHTML = "Select";
   var two_button = document.createElement('button');
   two_button.dataset.choice = "two";
-  two_button.innerHTML = "Go!";
+  two_button.innerHTML = "Select";
 
   //create choices
   var one = document.createElement('div');

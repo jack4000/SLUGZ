@@ -43,12 +43,13 @@ a.button{display:inline-block; margin:0 0 20px; padding:5px 10px; border:1px sol
 a.button:hover{background:#333; color:#fff;}
 
 h1, h2, h3, h4, h5, h6, .h,
-.wysiwyg h2, .wysiwyg h3, .wysiwyg h4{font-weight:700; margin:0 0 4px; line-height:1;}
+.wysiwyg h2, .wysiwyg h3, .wysiwyg h4{font-weight:700; margin:0 0 8px; line-height:1;}
 
 .h.vlarge{font-size:320%;}
 h1, .h.large, .wysiwyg h1{font-size:48px;}
 h2, .h.medlarge, .wysiwyg h2{font-size:32px;}
-h3, .h.medium, .wysiwyg h3{font-size:20px;}
+h3, .h.medium, .wysiwyg h3{font-size:24px;}
+h4, .h.medium, .wysiwyg h4{font-size:20px;}
 h1.as-text, h2.as-text, h3.as-text{display:inline-block; margin:0 1px 0 0; padding:0; font-size:16px;}
 
 p, .p,
@@ -126,6 +127,11 @@ select{max-width:90%; height:40px; margin:0 0 20px; padding:5px 10px; border:1px
 .upgrade-item .desc{height:50px;}
 .upgrade-item.completed{background:#ff0; color:#111;}
 .upgrade-item button{position:absolute; bottom:0; right:10px;}
+
+.event-item{margin:0; padding:8px; border:1px solid #ff0;}
+.event-item ul{list-style:none; margin:0 0 4px; padding:0 0 0 20px; }
+.event-item ul.pros{list-style-type:"+ ";}
+.event-item ul.cons{list-style-type:"- "; margin:0 0 12px;}
 
 /* --- SMALLER SCREENS --- */
 
